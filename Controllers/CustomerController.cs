@@ -64,5 +64,29 @@ public class CustomerController : ControllerBase
 
         return Ok(places);
     }
+
+    [HttpGet("GetCustomerByZip/{zipcode}")]
+    public async Task<IActionResult> GetCustomerByZip(int zipcode)
+    {
+        var customer = await this.customerContainer.GetCustomerByZip(zipcode);
+
+        return Ok(customer);
+    }
+
+    [HttpGet("SearchCustomer/{search}")]
+    public async Task<IActionResult> SearchCustomer(string search)
+    {
+        var customer = await this.customerContainer.SearchCustomer(search);
+
+        return Ok(customer);
+    }
+
+    [HttpGet("GetDistance/{id}/{longitude}/{latitude}")]
+    public async Task<IActionResult> GetDistance(int id,double longitude,double latitude)
+    {
+        var customer = await this.customerContainer.GetDistance(id,longitude,latitude);
+
+        return Ok(customer);
+    }
 }
 
