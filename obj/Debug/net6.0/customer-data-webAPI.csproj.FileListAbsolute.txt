@@ -37,3 +37,10 @@
 /home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/UserData.json
 /home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/JsonNet.PrivateSettersContractResolvers.dll
 /home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/Newtonsoft.Json.dll
+/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/Microsoft.IdentityModel.Logging.dll
+/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.dll
+/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/Microsoft.IdentityModel.Tokens.dll
+/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/System.IdentityModel.Tokens.Jwt.dll

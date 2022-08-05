@@ -1,6 +1,6 @@
 using AutoMapper;
+using customer_data_webAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using ProductAPI.Models;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -13,6 +13,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<ICustomerContainer, CustomerContainer>();
+builder.Services.AddScoped<IUserContainer, UserContainer>();
 
 builder.Services.AddDbContext<CustomerDBContext>(options =>
 options.UseNpgsql(builder.Configuration.GetConnectionString("customerContext")));

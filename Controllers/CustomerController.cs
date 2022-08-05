@@ -1,9 +1,7 @@
-
 using customer_data_webAPI.Models;
 using JsonNet.PrivateSettersContractResolvers;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using ProductAPI.Models;
 
 namespace customer_data_webAPI.Controllers;
 
@@ -20,8 +18,8 @@ public class CustomerController : ControllerBase
         this.customerContainer=_customerContainer;
     }
 
-    [HttpGet(Name = "saveCustomer")]
-    public void saveCustomer()
+    [HttpGet(Name = "SaveCustomer")]
+    public void SaveCustomer()
     {
 
         var jsontext = System.IO.File.ReadAllText(@"/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/UserData.json");

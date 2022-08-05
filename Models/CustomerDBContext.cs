@@ -1,6 +1,5 @@
-using customer_data_webAPI.Models;
 using Microsoft.EntityFrameworkCore;
-namespace ProductAPI.Models
+namespace customer_data_webAPI.Models
 {
     public class CustomerDBContext : DbContext
     {
@@ -10,8 +9,9 @@ namespace ProductAPI.Models
 
         }
 
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Address> Addresses { get; set; }
+        public DbSet<Customer>? Customers { get; set; }
+        public DbSet<Address>? Addresses { get; set; }
+        public DbSet<User>? Users { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Customer>()

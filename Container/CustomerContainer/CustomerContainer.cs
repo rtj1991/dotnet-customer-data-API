@@ -1,7 +1,6 @@
 using AutoMapper;
 using customer_data_webAPI.Models;
 using Microsoft.EntityFrameworkCore;
-using ProductAPI.Models;
 
 public class CustomerContainer : ICustomerContainer
 {
@@ -20,7 +19,8 @@ public class CustomerContainer : ICustomerContainer
         {
             if (customerDto._Id != null)
             {
-                var _csutomer = await _DBContext.Customers.FindAsync(customerDto._Id);
+                // var _csutomer = await _DBContext.Customers.FindAsync(customerDto._Id);
+                var _csutomer = await _DBContext.Customers.Include(m => m.Address).Where(c => c._Id == customerDto._Id).SingleOrDefaultAsync();
                 if (_csutomer != null)
                 {
 
@@ -143,22 +143,36 @@ public class CustomerContainer : ICustomerContainer
 
     public async Task<double> GetDistance(int id, double longitude, double latitude)
     {
+        try
+        {
+            var _csutomer = await _DBContext.Customers.FindAsync(id);
 
-        var _csutomer = await _DBContext.Customers.FindAsync(id);
+            if (_csutomer != null)
+            {
+                double rlat1 = Math.PI * latitude / 180;
+                double rlat2 = (double)(Math.PI * _csutomer.Latitude / 180);
 
-        double rlat1 = Math.PI * latitude / 180;
-        double rlat2 = (double)(Math.PI * _csutomer.Latitude / 180);
+                double theta = (double)(longitude - _csutomer.Longitude);
 
-        double theta = (double)(longitude - _csutomer.Longitude);
+                double rtheta = Math.PI * theta / 180;
+                double dist =
+                    Math.Sin(rlat1) * Math.Sin(rlat2) + Math.Cos(rlat1) *
+                    Math.Cos(rlat2) * Math.Cos(rtheta);
+                dist = Math.Acos(dist);
+                dist = dist * 180 / Math.PI;
+                dist = dist * 60 * 1.1515;
 
-        double rtheta = Math.PI * theta / 180;
-        double dist =
-            Math.Sin(rlat1) * Math.Sin(rlat2) + Math.Cos(rlat1) *
-            Math.Cos(rlat2) * Math.Cos(rtheta);
-        dist = Math.Acos(dist);
-        dist = dist * 180 / Math.PI;
-        dist = dist * 60 * 1.1515;
+                return dist * 1.609344;
+            }
+            throw new NullReferenceException("Getting Null while fetching Customer details");
 
-        return dist * 1.609344;
+        }
+        catch (ArgumentNullException e)
+        {
+
+            throw new ArgumentNullException("Getting Error while Argument Pass " + e.Message);
+        }
+
+
     }
 }
