@@ -44,3 +44,7 @@
 /home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/Microsoft.IdentityModel.Tokens.dll
 /home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/System.IdentityModel.Tokens.Jwt.dll
+/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/NLog.dll
+/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/NLog.Extensions.Logging.dll
+/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/NLog.Web.AspNetCore.dll
+/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/NLog.config

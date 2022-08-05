@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "On4mwydMOIWnY6cZvoVtHScXT3jVfMCp6U4c+nu4mMdeuwjOUSTpkpNPaUrpR26jylCQrqKT5opgNXlV5m4g1A==",
+  "dgSpecHash": "ZKsRmhlKC/QqrSWa7JaEdCICrt0q3NWiMPwoGJdYP+0zFvqBTDHRwNAdHtXz9k5B/31WrN/2N7HaWZLgJzD//g==",
   "success": true,
   "projectFilePath": "/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/customer-data-webAPI.csproj",
   "expectedPackageFiles": [
@@ -31,6 +31,9 @@
     "/home/thara/.nuget/packages/microsoft.identitymodel.tokens/6.10.0/microsoft.identitymodel.tokens.6.10.0.nupkg.sha512",
     "/home/thara/.nuget/packages/microsoft.openapi/1.2.3/microsoft.openapi.1.2.3.nupkg.sha512",
     "/home/thara/.nuget/packages/newtonsoft.json/12.0.1/newtonsoft.json.12.0.1.nupkg.sha512",
+    "/home/thara/.nuget/packages/nlog/5.0.1/nlog.5.0.1.nupkg.sha512",
+    "/home/thara/.nuget/packages/nlog.extensions.logging/5.0.1/nlog.extensions.logging.5.0.1.nupkg.sha512",
+    "/home/thara/.nuget/packages/nlog.web.aspnetcore/5.1.0/nlog.web.aspnetcore.5.1.0.nupkg.sha512",
     "/home/thara/.nuget/packages/npgsql/6.0.5/npgsql.6.0.5.nupkg.sha512",
     "/home/thara/.nuget/packages/npgsql.entityframeworkcore.postgresql/6.0.5/npgsql.entityframeworkcore.postgresql.6.0.5.nupkg.sha512",
     "/home/thara/.nuget/packages/swashbuckle.aspnetcore/6.2.3/swashbuckle.aspnetcore.6.2.3.nupkg.sha512",

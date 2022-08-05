@@ -1,5 +1,6 @@
 using customer_data_webAPI.Models;
 using JsonNet.PrivateSettersContractResolvers;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
@@ -10,14 +11,17 @@ namespace customer_data_webAPI.Controllers;
 public class CustomerController : ControllerBase
 {
     private readonly IServiceProvider serviceProvider;
-
     private readonly ICustomerContainer customerContainer;
-    public CustomerController(IServiceProvider _serviceProvider,ICustomerContainer _customerContainer)
+
+    private readonly IDistanceCalculationContainer distanceCalculation;
+    public CustomerController(IServiceProvider _serviceProvider, ICustomerContainer _customerContainer, IDistanceCalculationContainer _distanceCalculation)
     {
         this.serviceProvider = _serviceProvider;
-        this.customerContainer=_customerContainer;
+        this.customerContainer = _customerContainer;
+        this.distanceCalculation = _distanceCalculation;
     }
 
+    [Authorize(Roles = "ADMIN")]
     [HttpGet(Name = "SaveCustomer")]
     public void SaveCustomer()
     {
@@ -55,6 +59,7 @@ public class CustomerController : ControllerBase
         return Ok(true);
     }
 
+    // [Authorize(Roles = "ADMIN")]
     [HttpGet("GetAll")]
     public async Task<IActionResult> GetAll()
     {
@@ -80,9 +85,9 @@ public class CustomerController : ControllerBase
     }
 
     [HttpGet("GetDistance/{id}/{longitude}/{latitude}")]
-    public async Task<IActionResult> GetDistance(int id,double longitude,double latitude)
+    public async Task<IActionResult> GetDistance(int id, double longitude, double latitude)
     {
-        var customer = await this.customerContainer.GetDistance(id,longitude,latitude);
+        var customer = await this.distanceCalculation.GetDistance(id, longitude, latitude);
 
         return Ok(customer);
     }

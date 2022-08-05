@@ -6,11 +6,14 @@ public class CustomerContainer : ICustomerContainer
 {
     private readonly CustomerDBContext _DBContext;
     private readonly IMapper _mapper;
+    private readonly ILogger<CustomerContainer> _logger;
 
-    public CustomerContainer(CustomerDBContext _DBContext, IMapper _mapper)
+    public CustomerContainer(CustomerDBContext _DBContext, IMapper _mapper, ILogger<CustomerContainer> logger)
     {
         this._DBContext = _DBContext;
         this._mapper = _mapper;
+        this._logger = logger;
+        _logger.LogInformation(1, "GenericHelper has been constructed");
     }
     public async Task<bool> Edit(CustomerDto customerDto)
     {
@@ -19,7 +22,6 @@ public class CustomerContainer : ICustomerContainer
         {
             if (customerDto._Id != null)
             {
-                // var _csutomer = await _DBContext.Customers.FindAsync(customerDto._Id);
                 var _csutomer = await _DBContext.Customers.Include(m => m.Address).Where(c => c._Id == customerDto._Id).SingleOrDefaultAsync();
                 if (_csutomer != null)
                 {
@@ -79,6 +81,7 @@ public class CustomerContainer : ICustomerContainer
 
     public Task<List<Customer>> GetAll()
     {
+        _logger.LogInformation("get all customers");
         List<Customer> resp = new List<Customer>();
 
         var _customer = _DBContext.Customers.Include(b => b.Address).ToList();
@@ -141,38 +144,4 @@ public class CustomerContainer : ICustomerContainer
         }
     }
 
-    public async Task<double> GetDistance(int id, double longitude, double latitude)
-    {
-        try
-        {
-            var _csutomer = await _DBContext.Customers.FindAsync(id);
-
-            if (_csutomer != null)
-            {
-                double rlat1 = Math.PI * latitude / 180;
-                double rlat2 = (double)(Math.PI * _csutomer.Latitude / 180);
-
-                double theta = (double)(longitude - _csutomer.Longitude);
-
-                double rtheta = Math.PI * theta / 180;
-                double dist =
-                    Math.Sin(rlat1) * Math.Sin(rlat2) + Math.Cos(rlat1) *
-                    Math.Cos(rlat2) * Math.Cos(rtheta);
-                dist = Math.Acos(dist);
-                dist = dist * 180 / Math.PI;
-                dist = dist * 60 * 1.1515;
-
-                return dist * 1.609344;
-            }
-            throw new NullReferenceException("Getting Null while fetching Customer details");
-
-        }
-        catch (ArgumentNullException e)
-        {
-
-            throw new ArgumentNullException("Getting Error while Argument Pass " + e.Message);
-        }
-
-
-    }
 }
