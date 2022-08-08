@@ -90,3 +90,14 @@
 2022-08-08 15:21:28.5190 Info Logger has been closed down.
 2022-08-08 15:21:28.5190 Info AppDomain Shutting down. LogFactory closing...
 2022-08-08 15:21:28.5237 Info LogFactory has been closed.
+2022-08-08 16:21:16.8684 Info Message Template Auto Format enabled
+2022-08-08 16:21:16.8798 Info Loading assembly: NLog.Web.AspNetCore
+2022-08-08 16:21:16.9108 Info Adding target FileTarget(Name=allfile)
+2022-08-08 16:21:16.9108 Info Adding target FileTarget(Name=ownFile-web)
+2022-08-08 16:21:16.9297 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/NLog.config
+2022-08-08 16:21:17.0992 Info Validating config: TargetNames=allfile, ownFile-web, ConfigItems=45, FilePath=/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/bin/Debug/net6.0/NLog.config
+2022-08-08 17:20:55.0254 Info Shutdown() called. Logger closing...
+2022-08-08 17:20:55.0254 Info Closing old configuration.
+2022-08-08 17:20:55.0360 Info Logger has been closed down.
+2022-08-08 17:20:55.0360 Info AppDomain Shutting down. LogFactory closing...
+2022-08-08 17:20:55.0360 Info LogFactory has been closed.
