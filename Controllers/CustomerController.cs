@@ -12,14 +12,19 @@ public class CustomerController : ControllerBase
 {
     private readonly IServiceProvider serviceProvider;
     private readonly ICustomerContainer customerContainer;
+    private readonly ILogger<CustomerController> _logger;
 
     private readonly IDistanceCalculationContainer distanceCalculation;
-    public CustomerController(IServiceProvider _serviceProvider, ICustomerContainer _customerContainer, IDistanceCalculationContainer _distanceCalculation)
+    public CustomerController(IServiceProvider _serviceProvider, ICustomerContainer _customerContainer, IDistanceCalculationContainer _distanceCalculation, ILogger<CustomerController> logger)
     {
         this.serviceProvider = _serviceProvider;
         this.customerContainer = _customerContainer;
         this.distanceCalculation = _distanceCalculation;
+        _logger = logger;
+        _logger.LogInformation(1, "CustomerController has been constructed");
     }
+
+
 
     [Authorize(Roles = "ADMIN")]
     [HttpGet(Name = "SaveCustomer")]
@@ -46,11 +51,13 @@ public class CustomerController : ControllerBase
             {
                 context.AddRange(customer);
                 context.SaveChanges();
+                _logger.LogInformation("All The Customer Details Saved");
             }
 
         }
 
     }
+
 
     [HttpPost("Edit")]
     public async Task<IActionResult> Edit(CustomerDto customerDto)
@@ -63,9 +70,20 @@ public class CustomerController : ControllerBase
     [HttpGet("GetAll")]
     public async Task<IActionResult> GetAll()
     {
-        var places = await this.customerContainer.GetAll();
+        try
+        {
 
-        return Ok(places);
+            var places = await this.customerContainer.GetAll();
+
+            return Ok(places);
+        }
+        catch (Exception e)
+        {
+
+            _logger.LogError("Exception thrown" + e.Message);
+            throw new Exception();
+        }
+
     }
 
     [HttpGet("GetCustomerByZip/{zipcode}")]

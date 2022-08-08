@@ -1,9 +1,11 @@
 using System.Text;
 using AutoMapper;
+using customer_data_webAPI.Controllers;
 using customer_data_webAPI.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using NLog;
 using NLog.Web;
 
 // var logger = NLog.LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
@@ -27,6 +29,9 @@ try
     // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
     builder.Services.AddEndpointsApiExplorer();
     builder.Services.AddSwaggerGen();
+
+    builder.Services.AddTransient<CustomerController>();
+    builder.Services.AddTransient<CustomerContainer>();
 
     builder.Services.AddScoped<ICustomerContainer, CustomerContainer>();
     builder.Services.AddScoped<IUserContainer, UserContainer>();

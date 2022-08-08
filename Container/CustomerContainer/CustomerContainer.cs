@@ -13,13 +13,13 @@ public class CustomerContainer : ICustomerContainer
         this._DBContext = _DBContext;
         this._mapper = _mapper;
         this._logger = logger;
-        _logger.LogInformation(1, "GenericHelper has been constructed");
     }
     public async Task<bool> Edit(CustomerDto customerDto)
     {
 
         try
         {
+            _logger.LogInformation("Edit Customer Data !");
             if (customerDto._Id != null)
             {
                 var _csutomer = await _DBContext.Customers.Include(m => m.Address).Where(c => c._Id == customerDto._Id).SingleOrDefaultAsync();
@@ -67,6 +67,7 @@ public class CustomerContainer : ICustomerContainer
             }
             else
             {
+                _logger.LogInformation("Edit Customer Data  Null Argument Detected");
                 throw new ArgumentNullException("Getting Error while Argument Pass !");
             }
 
@@ -81,7 +82,7 @@ public class CustomerContainer : ICustomerContainer
 
     public Task<List<Customer>> GetAll()
     {
-        _logger.LogInformation("get all customers");
+        _logger.LogInformation("Fetching All The Customer Details");
         List<Customer> resp = new List<Customer>();
 
         var _customer = _DBContext.Customers.Include(b => b.Address).ToList();
@@ -91,6 +92,7 @@ public class CustomerContainer : ICustomerContainer
         }
         else
         {
+            _logger.LogInformation("Getting Null while fetching Customer details");
             throw new NullReferenceException("Getting Null while fetching Customer details");
         }
         return Task.FromResult(resp);
@@ -100,7 +102,7 @@ public class CustomerContainer : ICustomerContainer
     {
         try
         {
-
+            _logger.LogInformation("Fetching Customer details By Zipcode");
             var customer = await _DBContext.Customers.Include(b => b.Address).Where(b => b.Address.Zipcode == zipcode).ToListAsync();
 
             if (customer != null)
@@ -110,11 +112,13 @@ public class CustomerContainer : ICustomerContainer
             }
             else
             {
+                _logger.LogInformation("Getting Null while fetching Customer details");
                 throw new NullReferenceException("Getting Null while fetching Customer details");
             }
         }
         catch (ArgumentNullException e)
         {
+            _logger.LogInformation("Getting Error while Argument Pass " + e.Message);
             throw new ArgumentNullException("Getting Error while Argument Pass " + e.Message);
         }
     }
@@ -125,6 +129,7 @@ public class CustomerContainer : ICustomerContainer
     {
         try
         {
+            _logger.LogInformation("Fetching Customer details By Any Text");
 
             var customer = await _DBContext.Customers.Include(b => b.Address).Where(b => b.Name.Contains(search) || b._Id.Contains(search) || b.EyeColor.Contains(search) || b.Gender.Contains(search) || b.Company.Contains(search) || b.Email.Contains(search) || b.Phone.Contains(search) || b.About.Contains(search) || b.Registered.Contains(search) || b.Address.Street.Contains(search) || b.Address.City.Contains(search) || b.Address.State.Contains(search)).ToListAsync();
 
@@ -135,11 +140,13 @@ public class CustomerContainer : ICustomerContainer
             }
             else
             {
+                _logger.LogInformation("Getting Null while fetching Customer detailse");
                 throw new NullReferenceException("Getting Null while fetching Customer details");
             }
         }
         catch (ArgumentNullException e)
         {
+            _logger.LogInformation("Getting Error while Argument Pass "+e.Message);
             throw new ArgumentNullException("Getting Error while Argument Pass " + e.Message);
         }
     }
