@@ -50,6 +50,7 @@ public class UserController : ControllerBase
 
         return Ok(finaltoken);
     }
+    
 
     [HttpPost("Create")]
     public async Task<IActionResult> Create(User userDto)

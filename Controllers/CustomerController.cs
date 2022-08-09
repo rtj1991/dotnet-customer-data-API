@@ -13,25 +13,28 @@ public class CustomerController : ControllerBase
     private readonly IServiceProvider serviceProvider;
     private readonly ICustomerContainer customerContainer;
     private readonly ILogger<CustomerController> _logger;
+    private readonly IConfiguration _config;
 
     private readonly IDistanceCalculationContainer distanceCalculation;
-    public CustomerController(IServiceProvider _serviceProvider, ICustomerContainer _customerContainer, IDistanceCalculationContainer _distanceCalculation, ILogger<CustomerController> logger)
+    public CustomerController(IServiceProvider _serviceProvider, ICustomerContainer _customerContainer, IDistanceCalculationContainer _distanceCalculation, ILogger<CustomerController> logger, IConfiguration config)
     {
         this.serviceProvider = _serviceProvider;
         this.customerContainer = _customerContainer;
         this.distanceCalculation = _distanceCalculation;
         _logger = logger;
         _logger.LogInformation(1, "CustomerController has been constructed");
+        this._config = config;
     }
 
 
 
-    [Authorize(Roles = "ADMIN")]
+    // [Authorize(Roles = "ADMIN")]
     [HttpGet(Name = "SaveCustomer")]
     public void SaveCustomer()
     {
-
-        var jsontext = System.IO.File.ReadAllText(@"/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/UserData.json");
+        var Url = this._config["CustomerEndPoint:Url"];
+        // var jsontext = System.IO.File.ReadAllText(@"/home/thara/Documents/ASPDOTNET_2/customer-data-webAPI/UserData.json");
+        var jsontext = System.IO.File.ReadAllText(@Url);
 
         JsonSerializerSettings settings = new JsonSerializerSettings
         {
